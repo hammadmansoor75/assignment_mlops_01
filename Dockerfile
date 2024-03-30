@@ -7,10 +7,14 @@ WORKDIR /app
 # Copy the current directory contents into the container at /app
 COPY . /app
 
-# List contents of /app for debugging purposes
-RUN ls -la /app
-
 # Install any needed packages specified in requirements.txt
-RUN pip install --no-cache-dir -r requirement.txt
+RUN pip install --trusted-host pypi.python.org -r requirements.txt
 
-CMD ["jupyter", "nbconvert", "--to", "notebook", "--execute", "Model_Training.ipynb"]
+# Make port 5000 available to the world outside this container
+EXPOSE 5000
+
+# Define environment variable
+ENV NAME World
+
+# Run app.py when the container launches
+CMD ["python", "app.py"]
