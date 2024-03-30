@@ -6,14 +6,14 @@ pipeline {
             steps {
                 bat "docker login --username hammadmansoor --password hammad0066"
                 // Build the Docker image
-                bat "docker build -t jehanzebakram/student ."
+                bat "docker build -t student ."
             }
         }
 
         stage('Push Image to Docker Hub') {
             steps {
                 // Push the image to Docker Hub
-                bat "docker push jehanzebakram/student"
+                bat "docker push student"
             }
         }
     }
