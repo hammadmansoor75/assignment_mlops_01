@@ -8,4 +8,3 @@ def test_read_csv():
     df = pd.read_csv('./Dataset/student.csv')
     assert not df.empty, "CSV file is empty."
     assert 'Student_Age' in df.columns, "'Student_Age' column not in CSV."
-
