@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build Docker Image') {
             steps {
-                bat "docker login --username jehanzebakram --password ghg%4U.Q3ZqU69^"
+                bat "docker login --username JehanzebAkram --password ghg%4U.Q3ZqU69^"
                 // Build the Docker image
                 bat "docker build -t jehanzebakram/student ."
             }
