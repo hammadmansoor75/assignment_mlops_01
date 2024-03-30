@@ -1,0 +1,32 @@
+# .github/workflows/code_quality.yml
+name: Code Quality Check
+on:
+  push:
+    branches:
+      - dev
+jobs:
+  code_quality:
+    name: Code Quality Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          pip install flake8
+
+      - name: Run Flake8
+        run: |
+          flake8 .
+
+      - name: Notify Admin if Issues Found
+        if: failure()
+        run: |
+          # Logic to notify admin
