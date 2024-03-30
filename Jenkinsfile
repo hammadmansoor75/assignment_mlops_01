@@ -2,48 +2,28 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
-            steps {
-                // Checkout code from repository
-                git 'https://github.com/hammadmansoor75/assignment_mlops_01.git'
-            }
-        }
         stage('Build Docker Image') {
             steps {
-                // Build Docker image
-                script {
-                    docker.build("your_docker_image_name")
-                }
+                bat "docker login --username jehanzebakram --password ghg%4U.Q3ZqU69^"
+                // Build the Docker image
+                bat "docker build -t jehanzebakram/student ."
             }
         }
-        stage('Push to Docker Hub') {
+
+        stage('Push Image to Docker Hub') {
             steps {
-                // Push Docker image to Docker Hub
-                script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_credentials') {
-                        docker.image("your_docker_image_name").push("latest")
-                    }
-                }
-            }
-        }
-        stage('Email Notification') {
-            steps {
-                // Send email notification
-                emailext (
-                    to: 'admin@example.com',
-                    subject: 'Jenkins Job Successful',
-                    body: 'The Dockerization job was successful.',
-                )
+                // Push the image to Docker Hub
+                bat "docker push jehanzebakram/student"
             }
         }
     }
 
     post {
         success {
-            echo 'Pipeline succeeded! Yay!'
-        }
-        failure {
-            echo 'Pipeline failed! Please check the logs for more information.'
+            // Email upon successfully completing the pipeline
+            mail to: 'i200929@nu.edu.pk',
+                 subject: "SUCCESS: Docker image pushed to Docker Hub",
+                 body: "The pipeline successfully pushed the Docker image to Docker Hub."
         }
     }
 }
