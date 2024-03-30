@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout code from repository
-                git 'https://github.com/your/repository.git'
+                git 'https://github.com/hammadmansoor75/assignment_mlops_01.git'
             }
         }
         stage('Build Docker Image') {
