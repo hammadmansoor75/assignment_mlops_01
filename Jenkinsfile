@@ -18,9 +18,11 @@ pipeline {
         }
     }
 
-   post {
-        always {
-            echo "Pipeline execution complete."
+    post {
+        success {
+            emailext to: 'hammadmansoor75@gmail.com',
+                     subject: "SUCCESS: Docker image pushed to Docker Hub",
+                     body: "The pipeline successfully pushed the Docker image to Docker Hub."
 }
 }
 }
