@@ -18,11 +18,10 @@ pipeline {
         }
     }
 
-    post {
+   post {
         success {
-            emailext to: 'hammadmansoor75@gmail.com',
-                     subject: "SUCCESS: Docker image pushed to Docker Hub",
-                     body: "The pipeline successfully pushed the Docker image to Docker Hub.",
+            // If you want, you can perform other actions here instead of sending an email
+            echo "Pipeline succeeded, Docker image pushed to Docker Hub."
         }
     }
 }
