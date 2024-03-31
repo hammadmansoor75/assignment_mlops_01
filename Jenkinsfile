@@ -20,8 +20,13 @@ pipeline {
 
    post {
         success {
-            // If you want, you can perform other actions here instead of sending an email
-            echo "Pipeline succeeded, Docker image pushed to Docker Hub."
-        }
+            echo 'Docker image build and push successful!'
+            mail to: 'hammadmansoor75@gmail.com',
+                 subject: "Deployment Successful",
+                 body: "The deployment of build was successful"
+        }
+        failure {
+            echo 'Docker image build or push failed!'
+        }
     }
 }
