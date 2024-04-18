@@ -1,8 +1,9 @@
 name: Unit Testing
 on:
   pull_request:
-    branches:
-      - test
+    branches: [ test ]
+  push:
+    branches: [ test ]
 
 jobs:
   unit_testing:
